@@ -1,6 +1,12 @@
+// These are just setting up an instance of express. Literally directly from Express' documentation. 
 const express = require('express');
 const app = express();
-const models = require('./models/Fruits')
+const port = 4000
+
+// This is going to the Fruits.js file in the models directory. It is set equal to the export from that file
+const models = require('./models/Fruits');
+console.log(models);
+// This is getting just the array of fruits. Not the whole object that has two key/value pairs.
 const fruits = models.fruits
 // Models - Database stuff
 // controllers - routes
@@ -15,7 +21,7 @@ app.set('view engine', 'ejs');
 // Hungry for more to create my own API, and APIs always should be in JSON
 app.get('/api', (req, res) => {
     res.json({
-        fruits,
+        models,
         status: 200
     })
 })
@@ -30,11 +36,11 @@ app.get('/starwars', (req, res) => {
 })
 
 app.get('/fruits', (req, res) => {
-    res.render('fruits/index', {fruits: fruits})
+    res.render('fruits/index.ejs', {fruits: fruits})
 })
 
 app.get('/fruits/new', (req, res) => {
-    res.send("This is a form for you to fill out")
+    res.render("fruits/new.ejs")
 })
 
 app.get('/fruits/:id', (req, res) => {
@@ -45,12 +51,11 @@ app.get('/fruits/:id', (req, res) => {
     res.render("fruits/show.ejs", {fruit: fruit});
 })
 
-
 app.get('/*', (req, res) => {
-    res.send("You're not smart and visited a bad link")
+    res.render("404.ejs")
 })
 
 // Listen at the bottom
-app.listen(3000, () => {
-    console.log("Listening on port 4000")
+app.listen(port, () => {
+    console.log(`🏝️ Server is listening to PORT ${port} 🎧`)
 })

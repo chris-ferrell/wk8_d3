@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= fruit.name %></title>
-</head>
-<body>
+<%- include('../header.ejs', {name: fruit.color + " " + fruit.name}) %>
     <h1>This is my individual fruit</h1>
+    <img src=<%= fruit.image %> alt="Fruit image">
     <h2>Name: <%= fruit.name %></h2>
     <h2>Color: <%= fruit.color %></h2>
     <h2>Ready to eat? <%= fruit.readyToEat %></h2>
